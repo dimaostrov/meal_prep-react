@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { AppBar, Toolbar, Typography } from "@material-ui/core/";
 
 const styles = {
   list: {
@@ -21,6 +22,10 @@ const styles = {
 };
 
 class SwipeableTemporaryDrawer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     top: false
   };
@@ -37,18 +42,7 @@ class SwipeableTemporaryDrawer extends React.Component {
     const fullList = (
       <div className={classes.fullList}>
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
+          {["Menu", "Sign In", "Join"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -62,7 +56,16 @@ class SwipeableTemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.toggleDrawer("top", true)}>Open Top</Button>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" color="inherit">
+              Meal-Prep
+            </Typography>
+
+            <div className={classes.grow} />
+            <Button onClick={this.toggleDrawer("top", true)} />
+          </Toolbar>
+        </AppBar>
         <SwipeableDrawer
           anchor="top"
           open={this.state.top}
