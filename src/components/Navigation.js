@@ -52,7 +52,6 @@ const RegularToolbar = props => {
             Menu
           </Button>
           <div className={classes.grow} />
-          <p>{props.width}</p>
           <Button color="inherit">Login</Button>
           <Button color="inherit" variant="contained">
             Join
