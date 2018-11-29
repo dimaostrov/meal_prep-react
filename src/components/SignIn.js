@@ -1,0 +1,24 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+import { compose } from "recompose";
+import { withRouter } from "react-router-dom";
+import Form from "./Form";
+import { Consumer } from "./AppProvider";
+
+const Login = props => (
+  <Consumer>
+    {({ state, ...context }) => (
+      <Form
+        action="signIn"
+        title="Login"
+        onSuccess={() => props.history.push("/dashboard")}
+        onError={({ message }) =>
+          context.setMessage(`Login failed: ${message}`)
+        }
+      />
+    )}
+  </Consumer>
+);
+
+export default withRouter(Login);

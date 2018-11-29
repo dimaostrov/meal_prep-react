@@ -51,7 +51,7 @@ class SwipeableTemporaryDrawer extends React.Component {
 
     return (
       <div>
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <IconButton
               onClick={this.toggleDrawer("top", true)}

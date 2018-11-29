@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import withWidth from "@material-ui/core/withWidth";
 import { compose } from "recompose";
+import { Link } from "react-router-dom";
 
 import SmallToolbar from "./SmallToolbar";
 
@@ -37,11 +38,18 @@ const responsiveBar = props => {
 
 const RegularToolbar = props => {
   const { classes } = props;
+  const loggedIn = false;
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
-          <Typography variant="h6" color="inherit">
+          <Typography
+            style={{ textDecoration: "none" }}
+            variant="h6"
+            color="inherit"
+            component={Link}
+            to="/"
+          >
             Meal-Prep
           </Typography>
           <Button
@@ -52,10 +60,23 @@ const RegularToolbar = props => {
             Menu
           </Button>
           <div className={classes.grow} />
-          <Button color="inherit">Login</Button>
-          <Button color="inherit" variant="contained">
-            Join
-          </Button>
+          {loggedIn ? (
+            <Button color="inherit">Logout</Button>
+          ) : (
+            <>
+              <Button color="inherit" component={Link} to="/signin">
+                Login
+              </Button>
+              <Button
+                color="inherit"
+                component={Link}
+                to="/signup"
+                variant="contained"
+              >
+                Join
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </div>
